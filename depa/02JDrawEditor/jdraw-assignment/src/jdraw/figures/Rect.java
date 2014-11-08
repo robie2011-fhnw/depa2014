@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.geom.RectangularShape;
+import java.util.List;
+
+import jdraw.framework.FigureHandle;
 
 public class Rect extends AbstractFigure {
 
@@ -23,6 +26,12 @@ public class Rect extends AbstractFigure {
 		g.fillRect(x,y,w,h);
 		g.setColor(Color.BLACK);
 		g.drawRect(x,y,w,h);
+	}
+
+	@Override
+	public List<FigureHandle> getHandles() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -12,7 +12,7 @@ import jdraw.framework.DrawTool;
 import jdraw.framework.DrawView;
 import jdraw.framework.Figure;
 
-public class GenericTool<T> implements DrawTool {
+public class GenericAbstractTool<T> implements DrawTool {
 	private String name = "UNDEFINED";
 	/** 
 	 * the image resource path. 
@@ -46,7 +46,7 @@ public class GenericTool<T> implements DrawTool {
 	
 	Class<T> shapeClass;
 	
-	public GenericTool(DrawContext context, Class<T> className) {
+	public GenericAbstractTool(DrawContext context, Class<T> className) {
 		this.context = context;
 		this.view = context.getView();
 		this.shapeClass = className;

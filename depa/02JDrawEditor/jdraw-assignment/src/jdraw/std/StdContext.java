@@ -169,8 +169,8 @@ public class StdContext extends AbstractContext {
 	protected void doRegisterDrawTools() {
 		// TODO Add new figure tools here
 		
-		addTool(new GenericTool<Rect>(this, Rect.class));
-		addTool(new GenericTool<Oval>(this, Oval.class));
+		addTool(new GenericAbstractTool<Rect>(this, Rect.class));
+		addTool(new GenericAbstractTool<Oval>(this, Oval.class));
 	}
 
 	/**

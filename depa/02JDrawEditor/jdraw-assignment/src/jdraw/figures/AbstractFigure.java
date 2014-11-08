@@ -51,6 +51,13 @@ public abstract class AbstractFigure implements Figure {
 	public Rectangle getBounds() {
 		return rshape.getBounds();
 	}
+	
+	public Point getLocation(){
+		Point p = new Point();
+		p.x = (int) rshape.getX();
+		p.y = (int) rshape.getY();
+		return p;
+	}
 
 
 	/**
@@ -59,10 +66,7 @@ public abstract class AbstractFigure implements Figure {
 	 * @see jdraw.framework.Figure#getHandles()
 	 */	
 	@Override
-	public List<FigureHandle> getHandles() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public abstract List<FigureHandle> getHandles();
 
 
 	@Override
