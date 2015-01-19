@@ -16,6 +16,7 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileFilter;
 
+import robert.pointconstrainer.FivePixelPointConstrainer;
 import jdraw.figures.*;
 import jdraw.framework.*;
 
@@ -120,7 +121,17 @@ public class StdContext extends AbstractContext {
 		editMenu.add(orderMenu);
 
 		JMenu grid = new JMenu("Grid...");
-		grid.add("Grid 1");
+		grid.add("Grid 1 - 5px").addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				if(getView().getConstrainer() != null)
+					getView().setConstrainer(null);
+				else
+					getView().setConstrainer(new FivePixelPointConstrainer());
+			}
+		});;
 		grid.add("Grid 2");
 		grid.add("Grid 3");
 		editMenu.add(grid);
