@@ -30,11 +30,11 @@ public abstract class AbstractFigure implements Figure {
 
 	@Override
 	public void move(int dx, int dy) {
-		if(dx == 0 && dy == 0) return;
+		if(dx == 0 && dy == 0) return; // nothing changed
 		
-		Point2D point = new Point(getBounds().x+dx, getBounds().y+dy);
-		Dimension dim = new Dimension(getBounds().width, getBounds().height);
-		rshape.setFrame(point, dim);
+		Point2D newLocation = new Point(getBounds().x+dx, getBounds().y+dy);
+		Dimension oldSize = new Dimension(getBounds().width, getBounds().height);
+		rshape.setFrame(newLocation, oldSize);
 		notifyObservers();
 	}
 
