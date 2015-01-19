@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.geom.RectangularShape;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import jdraw.framework.Figure;
 import jdraw.framework.FigureEvent;
 import jdraw.framework.FigureHandle;
 import jdraw.framework.FigureListener;
+
 
 public abstract class AbstractFigure implements Figure {
 	protected RectangularShape rshape;
@@ -30,8 +32,8 @@ public abstract class AbstractFigure implements Figure {
 	public void move(int dx, int dy) {
 		if(dx == 0 && dy == 0) return;
 		
-		Point2D point = new Point(getBounds().x, getBounds().y);
-		Dimension dim = new Dimension(dx, dy);
+		Point2D point = new Point(getBounds().x+dx, getBounds().y+dy);
+		Dimension dim = new Dimension(getBounds().width, getBounds().height);
 		rshape.setFrame(point, dim);
 		notifyObservers();
 	}
