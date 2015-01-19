@@ -26,10 +26,4 @@ public class TopRightHandle extends AbstractHandle {
 		return figure.getTopRightEdge();
 	}
 
-	@Override
-	public boolean canMoveMouseToThisPoint(Point point) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

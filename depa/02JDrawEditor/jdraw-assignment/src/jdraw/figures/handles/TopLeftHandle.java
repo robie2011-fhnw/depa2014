@@ -20,10 +20,4 @@ public class TopLeftHandle extends AbstractHandle {
 	public Point getLocation() {
 		return this.figure.getLocation();
 	}
-
-	@Override
-	public boolean canMoveMouseToThisPoint(Point point) {
-		return true;
-	}
-
 }

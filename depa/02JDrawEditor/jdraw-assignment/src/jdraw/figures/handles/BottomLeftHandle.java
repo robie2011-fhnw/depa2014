@@ -25,11 +25,4 @@ public class BottomLeftHandle extends AbstractHandle {
 	public Point getLocation() {
 		return figure.getBottomLeftEdge();
 	}
-
-	@Override
-	public boolean canMoveMouseToThisPoint(Point point) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }

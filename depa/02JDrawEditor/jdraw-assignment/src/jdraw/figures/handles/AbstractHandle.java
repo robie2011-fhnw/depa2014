@@ -60,7 +60,6 @@ public abstract class AbstractHandle implements FigureHandle {
 	@Override
 	public final void dragInteraction(int x, int y, MouseEvent e, DrawView v) {
 		v.getDrawContext().showStatusText("Resizing Figure ..." +x + "/"+y);
-		//if(x > 150)e.translatePoint(0, 0);
 		executeInteraction( new MouseInteraction(startInteraction, new Point(x,y)) );
 	}
 
@@ -106,7 +105,7 @@ public abstract class AbstractHandle implements FigureHandle {
 	
 	public abstract void executeInteraction(MouseInteraction m);
 	public abstract Point getLocation();
-	public abstract boolean canMoveMouseToThisPoint(Point point);
+	//public abstract boolean canMoveMouseToThisPoint(Point point);
 }
 
 
