@@ -8,8 +8,13 @@ import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RectangularShape;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
+import jdraw.figures.handles.BottomLeftHandle;
+import jdraw.figures.handles.BottomRightHandle;
+import jdraw.figures.handles.TopLeftHandle;
+import jdraw.figures.handles.TopRightHandle;
 import jdraw.framework.Figure;
 import jdraw.framework.FigureEvent;
 import jdraw.framework.FigureHandle;
@@ -68,7 +73,14 @@ public abstract class AbstractFigure implements Figure {
 	 * @see jdraw.framework.Figure#getHandles()
 	 */	
 	@Override
-	public abstract List<FigureHandle> getHandles();
+	public List<FigureHandle> getHandles(){
+		List<FigureHandle> handles = new LinkedList<FigureHandle>();
+		handles.add(new TopRightHandle(this));
+		handles.add(new TopLeftHandle(this));
+		handles.add(new BottomRightHandle(this));
+		handles.add(new BottomLeftHandle(this));		
+		return handles;
+	}
 
 
 	@Override
@@ -93,5 +105,20 @@ public abstract class AbstractFigure implements Figure {
 	@Override
 	public void removeFigureListener(FigureListener listener) {
 		observers.remove(listener);
+	}
+	
+	public Point getTopRightEdge(){
+		return new Point( getBounds().x + getBounds().width, 
+						  getBounds().y);
+	}
+	
+	public Point getBottomRightEdge(){
+		return new Point( getBounds().x + getBounds().width, 
+				   		  getBounds().y + getBounds().height);		
+	}
+	
+	public Point getBottomLeftEdge(){
+		return new Point( getBounds().x, 
+				  		  getBounds().y + getBounds().height);
 	}
 }
