@@ -5,6 +5,9 @@
 
 package jdraw;
 
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import jdraw.framework.DrawContext;
 
 import org.apache.log4j.BasicConfigurator;
@@ -60,6 +63,11 @@ public final class JDraw {
 
 		DrawContext drawContext = getContext();
 		drawContext.showView();
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

@@ -59,6 +59,7 @@ public class StdContext extends AbstractContext {
    */
 	public StdContext(DrawView view, List<DrawToolFactory> toolFactories) {
 		super(view, toolFactories);
+		drawContext = getView().getDrawContext();
 	}
 
 	/**
