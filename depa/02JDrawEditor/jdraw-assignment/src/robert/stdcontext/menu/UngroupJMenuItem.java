@@ -12,14 +12,14 @@ import robert.figuregroup.FigureGroupConcrete;
 
 public class UngroupJMenuItem extends JMenuItem {
 
-	public UngroupJMenuItem(final DrawContext ctx) {
+	public UngroupJMenuItem(final DrawContext drawContext) {
 		super("Ungroup");
 		setEnabled(true);
 		addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				List<Figure> selectedFigures = ctx.getView().getSelection();
+				List<Figure> selectedFigures = drawContext.getView().getSelection();
 				for(Figure f : selectedFigures){
 					if(f instanceof FigureGroupConcrete)
 						((FigureGroupConcrete) f).ungroup();					

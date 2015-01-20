@@ -10,17 +10,17 @@ import robert.pointconstrainer.FivePixelPointConstrainer;
 
 public class FivePixelPointConstrainerJMenuItem extends JMenuItem {
 
-	public FivePixelPointConstrainerJMenuItem(final DrawContext ctx) {
+	public FivePixelPointConstrainerJMenuItem(final DrawContext drawContext) {
 		super("5px Grid");
 		setEnabled(true);
 		
 		addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(ctx.getView().getConstrainer() != null)
-					ctx.getView().setConstrainer(null);
+				if(drawContext.getView().getConstrainer() != null)
+					drawContext.getView().setConstrainer(null);
 				else
-					ctx.getView().setConstrainer(new FivePixelPointConstrainer());
+					drawContext.getView().setConstrainer(new FivePixelPointConstrainer());
 				
 			}
 		});

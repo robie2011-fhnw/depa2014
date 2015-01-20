@@ -12,16 +12,16 @@ import robert.figuregroup.FigureGroupConcrete;
 
 public class GroupJMenuItem extends JMenuItem {
 
-	public GroupJMenuItem(final DrawContext ctx) {
+	public GroupJMenuItem(final DrawContext drawContext) {
 		super("Group");
 		setEnabled(true);
 		addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				List<Figure> selectedFigures = ctx.getView().getSelection();
+				List<Figure> selectedFigures = drawContext.getView().getSelection();
 				if(selectedFigures instanceof FigureGroupConcrete == false) {					
-					new FigureGroupConcrete(ctx.getView().getDrawContext());
+					new FigureGroupConcrete(drawContext.getView().getDrawContext());
 				}				
 			}
 		});

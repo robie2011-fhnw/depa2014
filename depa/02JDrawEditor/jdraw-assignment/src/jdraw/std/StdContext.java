@@ -25,9 +25,12 @@ import jdraw.framework.DrawToolFactory;
 import jdraw.framework.DrawView;
 import jdraw.framework.Figure;
 import robert.stdcontext.menu.CopyJMenuItem;
+import robert.stdcontext.menu.ExitJMenuItem;
 import robert.stdcontext.menu.FivePixelPointConstrainerJMenuItem;
 import robert.stdcontext.menu.GroupJMenuItem;
+import robert.stdcontext.menu.OpenJMenuItem;
 import robert.stdcontext.menu.PasteJMenuItem;
+import robert.stdcontext.menu.SaveJMenuItem;
 import robert.stdcontext.menu.UngroupJMenuItem;
 
 /**
@@ -38,7 +41,7 @@ import robert.stdcontext.menu.UngroupJMenuItem;
  * @version 2.6, 24.09.09
  */
 public class StdContext extends AbstractContext {
-	JMenuItem group, ungroup;
+	DrawContext drawContext;
 	
 	/**
 	 * Constructs a standard context with a default set of drawing tools.
@@ -46,6 +49,7 @@ public class StdContext extends AbstractContext {
 	 */
   public StdContext(DrawView view) {
 		super(view, null);
+		drawContext = getView().getDrawContext();
 	}
 	
   /**
@@ -64,8 +68,6 @@ public class StdContext extends AbstractContext {
 	 */
 	@Override
 	protected JMenu createEditMenu() {
-		DrawContext drawContext = getView().getDrawContext();
-		
 		JMenu editMenu = new JMenu("Edit");
 		final JMenuItem undo = new JMenuItem("Undo");
 		undo.setAccelerator(KeyStroke.getKeyStroke("control Z"));
@@ -143,32 +145,9 @@ public class StdContext extends AbstractContext {
 	@Override
 	protected JMenu createFileMenu() {
 	  JMenu fileMenu = new JMenu("File");
-		JMenuItem open = new JMenuItem("Open");
-		fileMenu.add(open);
-		open.setAccelerator(KeyStroke.getKeyStroke("control O"));
-		open.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				doOpen();
-			}
-		});
-
-		JMenuItem save = new JMenuItem("Save");
-		save.setAccelerator(KeyStroke.getKeyStroke("control S"));
-		fileMenu.add(save);
-		save.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				doSave();
-			}
-		});
-
-		JMenuItem exit = new JMenuItem("Exit");
-		fileMenu.add(exit);
-		exit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		});
-		
+		fileMenu.add(new OpenJMenuItem(drawContext));
+		fileMenu.add(new SaveJMenuItem(drawContext));		
+		fileMenu.add(new ExitJMenuItem());		
 		return fileMenu;
 	}
 
@@ -219,66 +198,6 @@ public class StdContext extends AbstractContext {
 		int pos = 0;
 		for (Figure f : orderedSelection) {
 			model.setFigureIndex(f, pos++);
-		}
-	}
-
-	/**
-	 * Handles the opening of a new drawing from a file.
-	 */
-	private void doOpen() {
-		JFileChooser chooser = new JFileChooser(getClass().getResource("")
-				.getFile());
-		chooser.setDialogTitle("Open Graphic");
-		chooser.setDialogType(JFileChooser.OPEN_DIALOG);
-		chooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
-			@Override
-			public String getDescription() {
-				return "JDraw Graphic (*.draw)";
-			}
-
-			@Override
-			public boolean accept(File f) {
-				return f.isDirectory() || f.getName().endsWith(".draw");
-			}
-		});
-		int res = chooser.showOpenDialog(this);
-
-		if (res == JFileChooser.APPROVE_OPTION) {
-			// read jdraw graphic
-			System.out.println("read file "
-					+ chooser.getSelectedFile().getName());
-		}
-	}
-
-	/**
-	 * Handles the saving of a drawing to a file.
-	 */
-	private void doSave() {
-		JFileChooser chooser = new JFileChooser(getClass().getResource("")
-				.getFile());
-		chooser.setDialogTitle("Save Graphic");
-		chooser.setDialogType(JFileChooser.SAVE_DIALOG);
-		FileFilter filter = new FileFilter() {
-			@Override
-			public String getDescription() {
-				return "JDraw Graphic (*.draw)";
-			}
-
-			@Override
-			public boolean accept(File f) {
-				return f.getName().endsWith(".draw");
-			}
-		};
-		chooser.setFileFilter(filter);
-		int res = chooser.showOpenDialog(this);
-
-		if (res == JFileChooser.APPROVE_OPTION) {
-			// save graphic
-			File file = chooser.getSelectedFile();
-			if (chooser.getFileFilter() == filter && !filter.accept(file)) {
-				file = new File(chooser.getCurrentDirectory(), file.getName() + ".draw");
-			}
-			System.out.println("save current graphic to file " + file.getName());
 		}
 	}
 

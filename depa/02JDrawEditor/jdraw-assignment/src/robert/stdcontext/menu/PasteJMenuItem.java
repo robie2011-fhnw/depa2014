@@ -9,7 +9,7 @@ import jdraw.framework.DrawContext;
 import jdraw.framework.Figure;
 
 public class PasteJMenuItem extends JMenuItem {
-	public PasteJMenuItem(final DrawContext ctx){		
+	public PasteJMenuItem(final DrawContext drawContext){		
 		super("Paste");
 		
 		setEnabled(true);
@@ -21,8 +21,8 @@ public class PasteJMenuItem extends JMenuItem {
 				if(Clipboard.getFromClipboard() == null) return;
 				
 				for(Figure f : Clipboard.getFromClipboard()){					
-					ctx.getModel().addFigure(f);
-					ctx.getView().addToSelection(f);
+					drawContext.getModel().addFigure(f);
+					drawContext.getView().addToSelection(f);
 				}
 				
 				Clipboard.putInClipboard(null);
