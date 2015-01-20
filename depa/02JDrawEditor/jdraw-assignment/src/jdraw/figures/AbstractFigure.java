@@ -20,7 +20,7 @@ import jdraw.framework.FigureHandle;
 import jdraw.framework.FigureListener;
 
 
-public abstract class AbstractFigure implements Figure {
+public abstract class AbstractFigure implements Figure, Cloneable {
 	protected RectangularShape rshape;
 	private List<FigureListener> observers = new ArrayList<FigureListener>();
 	
@@ -86,9 +86,20 @@ public abstract class AbstractFigure implements Figure {
 
 
 	@Override
-	public Figure clone() {
-		// TODO Auto-generated method stub
-		return null;
+	public AbstractFigure clone() {
+		AbstractFigure clone = null;
+		try {
+			clone = (AbstractFigure) super.clone();
+			clone.observers = new LinkedList<FigureListener>();
+			
+			if(rshape != null){
+				clone.rshape = (RectangularShape) rshape.clone();				
+			}
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return clone;
 	}
 
 	private void notifyObservers(){

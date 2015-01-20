@@ -102,9 +102,20 @@ public class FigureGroupConcrete extends AbstractFigure implements FigureGroup, 
 	}
 
 	@Override
-	public Figure clone() {
-		// TODO Auto-generated method stub
-		return null;
+	public FigureGroupConcrete clone() {
+		final FigureGroupConcrete clone = (FigureGroupConcrete) super.clone();
+		clone.bounds = null;
+		clone.figures = new LinkedList<Figure>();
+		
+		executeActionOverFigureParts(new FigureAction() {
+			
+			@Override
+			public void execute(Figure f) {
+				clone.figures.add(f.clone());
+			}
+		});
+		
+		return clone;
 	}
 	
 	public void ungroup(){

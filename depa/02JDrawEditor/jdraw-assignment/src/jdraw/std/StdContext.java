@@ -24,8 +24,10 @@ import jdraw.framework.DrawModel;
 import jdraw.framework.DrawToolFactory;
 import jdraw.framework.DrawView;
 import jdraw.framework.Figure;
+import robert.stdcontext.menu.CopyJMenuItem;
 import robert.stdcontext.menu.FivePixelPointConstrainerJMenuItem;
 import robert.stdcontext.menu.GroupJMenuItem;
+import robert.stdcontext.menu.PasteJMenuItem;
 import robert.stdcontext.menu.UngroupJMenuItem;
 
 /**
@@ -98,8 +100,8 @@ public class StdContext extends AbstractContext {
 
 		editMenu.addSeparator();
 		editMenu.add("Cut").setEnabled(false);
-		editMenu.add("Copy").setEnabled(false);
-		editMenu.add("Paste").setEnabled(false);
+		editMenu.add( new CopyJMenuItem(drawContext) );
+		editMenu.add( new PasteJMenuItem(drawContext) );
 		editMenu.addSeparator();
 		editMenu.add(new GroupJMenuItem(drawContext));		
 		editMenu.add(new UngroupJMenuItem(drawContext)) ;
@@ -172,8 +174,7 @@ public class StdContext extends AbstractContext {
 
 	@Override
 	protected void doRegisterDrawTools() {
-		// TODO Add new figure tools here
-		
+		// Add new figure tools here
 		addTool(new GenericAbstractTool<Rect>(this, Rect.class));
 		addTool(new GenericAbstractTool<Oval>(this, Oval.class));
 	}
