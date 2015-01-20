@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.awt.geom.RectangularShape;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -24,6 +23,9 @@ import jdraw.framework.FigureListener;
 public abstract class AbstractFigure implements Figure {
 	protected RectangularShape rshape;
 	private List<FigureListener> observers = new ArrayList<FigureListener>();
+	
+	public AbstractFigure(){		
+	}
 	
 	public AbstractFigure(RectangularShape r) {
 		this.rshape = r;

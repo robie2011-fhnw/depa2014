@@ -3,7 +3,6 @@ package jdraw.figures.handles;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.List;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.util.LinkedList;

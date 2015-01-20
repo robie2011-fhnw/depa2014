@@ -16,9 +16,17 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.filechooser.FileFilter;
 
-import robert.pointconstrainer.FivePixelPointConstrainer;
-import jdraw.figures.*;
-import jdraw.framework.*;
+import jdraw.figures.GenericAbstractTool;
+import jdraw.figures.Oval;
+import jdraw.figures.Rect;
+import jdraw.framework.DrawContext;
+import jdraw.framework.DrawModel;
+import jdraw.framework.DrawToolFactory;
+import jdraw.framework.DrawView;
+import jdraw.framework.Figure;
+import robert.stdcontext.menu.FivePixelPointConstrainerJMenuItem;
+import robert.stdcontext.menu.GroupJMenuItem;
+import robert.stdcontext.menu.UngroupJMenuItem;
 
 /**
  * Standard implementation of interface DrawContext.
@@ -28,7 +36,8 @@ import jdraw.framework.*;
  * @version 2.6, 24.09.09
  */
 public class StdContext extends AbstractContext {
-
+	JMenuItem group, ungroup;
+	
 	/**
 	 * Constructs a standard context with a default set of drawing tools.
 	 * @param view the view that is displaying the actual drawing.
@@ -53,6 +62,8 @@ public class StdContext extends AbstractContext {
 	 */
 	@Override
 	protected JMenu createEditMenu() {
+		DrawContext drawContext = getView().getDrawContext();
+		
 		JMenu editMenu = new JMenu("Edit");
 		final JMenuItem undo = new JMenuItem("Undo");
 		undo.setAccelerator(KeyStroke.getKeyStroke("control Z"));
@@ -89,16 +100,9 @@ public class StdContext extends AbstractContext {
 		editMenu.add("Cut").setEnabled(false);
 		editMenu.add("Copy").setEnabled(false);
 		editMenu.add("Paste").setEnabled(false);
-
 		editMenu.addSeparator();
-		JMenuItem group = new JMenuItem("Group");
-		group.setEnabled(false);
-		editMenu.add(group);
-
-		JMenuItem ungroup = new JMenuItem("Ungroup");
-		ungroup.setEnabled(false);
-		editMenu.add(ungroup);
-
+		editMenu.add(new GroupJMenuItem(drawContext));		
+		editMenu.add(new UngroupJMenuItem(drawContext)) ;
 		editMenu.addSeparator();
 
 		JMenu orderMenu = new JMenu("Order...");
@@ -121,17 +125,7 @@ public class StdContext extends AbstractContext {
 		editMenu.add(orderMenu);
 
 		JMenu grid = new JMenu("Grid...");
-		grid.add("Grid 1 - 5px").addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				if(getView().getConstrainer() != null)
-					getView().setConstrainer(null);
-				else
-					getView().setConstrainer(new FivePixelPointConstrainer());
-			}
-		});;
+		grid.add(new FivePixelPointConstrainerJMenuItem(drawContext));
 		grid.add("Grid 2");
 		grid.add("Grid 3");
 		editMenu.add(grid);

@@ -6,21 +6,19 @@
 package jdraw.std;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-
-import org.apache.commons.logging.Log;
-import org.apache.log4j.ConsoleAppender;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 
 import jdraw.framework.DrawCommandHandler;
 import jdraw.framework.DrawModel;
 import jdraw.framework.DrawModelEvent;
-import jdraw.framework.FigureEvent;
-import jdraw.framework.FigureListener;
 import jdraw.framework.DrawModelEvent.Type;
 import jdraw.framework.DrawModelListener;
 import jdraw.framework.Figure;
+import jdraw.framework.FigureEvent;
+import jdraw.framework.FigureListener;
+
+import org.apache.log4j.ConsoleAppender;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 
 /**
  * Provide a standard behavior for the drawing model. This class initially does not implement the methods
@@ -63,7 +61,7 @@ public class StdDrawModel implements DrawModel {
 	
 	@Override
 	public Iterable<Figure> getFigures() {
-		logger.trace("call getFigures()");
+		//logger.trace("call getFigures()");
 		return figures;
 		//return new LinkedList<Figure>(figures);
 	}

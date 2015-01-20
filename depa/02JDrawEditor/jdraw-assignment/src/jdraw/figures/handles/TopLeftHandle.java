@@ -1,6 +1,7 @@
 package jdraw.figures.handles;
 
 import java.awt.Point;
+
 import jdraw.figures.AbstractFigure;
 
 public class TopLeftHandle extends AbstractHandle {

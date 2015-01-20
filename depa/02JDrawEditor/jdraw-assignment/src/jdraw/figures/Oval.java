@@ -1,20 +1,8 @@
 package jdraw.figures;
 
 import java.awt.Color;
-import java.awt.Cursor;
 import java.awt.Graphics;
-import java.awt.Point;
-import java.awt.event.MouseEvent;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.RectangularShape;
-import java.util.ArrayList;
-import java.util.List;
-
-import jdraw.figures.handles.AbstractHandle;
-import jdraw.figures.handles.TopLeftHandle;
-import jdraw.framework.DrawView;
-import jdraw.framework.Figure;
-import jdraw.framework.FigureHandle;
 
 public class Oval extends AbstractFigure {
 
