@@ -16,6 +16,7 @@ import java.util.Set;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+import robert.stdcontext.SelectionChangedListener;
 import jdraw.framework.DrawContext;
 import jdraw.framework.DrawTool;
 import jdraw.framework.DrawView;
@@ -51,7 +52,8 @@ public class StdSelectionTool implements DrawTool {
 	/** handle that is currently used. */
 	private FigureHandle currentHandle;
 	/** the rubber band during selection. */
-	//private Rectangle selRectangle;
+	
+	private SelectionChangedListener selectionChangedListner;
 
 	/** This tool enables selection behavior in the given view.
 	 * 
@@ -262,6 +264,7 @@ public class StdSelectionTool implements DrawTool {
 			selMode = false;
 			view.setSelectionRubberBand(null);
 			view.repaint();
+			selectionChangedListner.update();
 		}
 
 		if (e.isShiftDown() && e.getX() == originalX && e.getY() == originalY)	{

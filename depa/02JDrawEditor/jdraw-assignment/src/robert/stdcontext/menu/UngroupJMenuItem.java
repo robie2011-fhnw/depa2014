@@ -9,8 +9,9 @@ import javax.swing.JMenuItem;
 import jdraw.framework.DrawContext;
 import jdraw.framework.Figure;
 import robert.figuregroup.FigureGroupConcrete;
+import robert.stdcontext.Observer;
 
-public class UngroupJMenuItem extends JMenuItem {
+public class UngroupJMenuItem extends JMenuItem implements Observer {
 
 	public UngroupJMenuItem(final DrawContext drawContext) {
 		super("Ungroup");
@@ -26,5 +27,11 @@ public class UngroupJMenuItem extends JMenuItem {
 				}
 			}
 		});
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
 	}
 }
