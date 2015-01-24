@@ -6,9 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
-import robert.stdcontext.SelectionChangedListener;
 import jdraw.framework.DrawContext;
 import jdraw.framework.Figure;
+import robert.stdcontext.SelectionChangedListener;
 
 public class SelectAllJMenuItem extends JMenuItem {
 	SelectionChangedListener listener;

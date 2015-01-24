@@ -116,6 +116,7 @@ public class StdDrawModel implements DrawModel {
 	public void removeAllFigures() {
 		logger.trace("call removeAllFigures");
 
+		@SuppressWarnings("unchecked")
 		ArrayList<Figure> localFigures = (ArrayList<Figure>) figures.clone();
 		for (Figure f : localFigures)
 			removeFigure(f);

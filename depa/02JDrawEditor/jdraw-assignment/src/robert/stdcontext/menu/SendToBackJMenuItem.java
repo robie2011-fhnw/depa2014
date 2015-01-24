@@ -36,8 +36,8 @@ public class SendToBackJMenuItem extends DefaultJMenuItem {
 
 
 	@Override
-	void callOnActionPerformed(DrawContext drawContex) {
-		sendToBack(drawContex.getView().getModel(), drawContex.getView().getSelection());
-		drawContex.getView().repaint();
+	void callOnActionPerformed() {
+		sendToBack(drawContext.getView().getModel(), drawContext.getView().getSelection());
+		drawContext.getView().repaint();
 	}
 }

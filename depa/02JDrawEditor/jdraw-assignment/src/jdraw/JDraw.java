@@ -6,7 +6,6 @@
 package jdraw;
 
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 import jdraw.framework.DrawContext;
 

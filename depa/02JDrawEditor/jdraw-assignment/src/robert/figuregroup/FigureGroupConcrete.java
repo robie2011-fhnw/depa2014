@@ -10,8 +10,6 @@ import jdraw.figures.AbstractFigure;
 import jdraw.framework.DrawContext;
 import jdraw.framework.Figure;
 import jdraw.framework.FigureGroup;
-import jdraw.framework.FigureHandle;
-import jdraw.framework.FigureListener;
 
 interface FigureAction{ void execute(Figure f); }
 

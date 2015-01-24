@@ -16,12 +16,12 @@ import java.util.Set;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-import robert.stdcontext.SelectionChangedListener;
 import jdraw.framework.DrawContext;
 import jdraw.framework.DrawTool;
 import jdraw.framework.DrawView;
 import jdraw.framework.Figure;
 import jdraw.framework.FigureHandle;
+import robert.stdcontext.SelectionChangedListener;
 
 /**
  * The default tool is used for figure selection and general manipulation of one or more figures.
@@ -53,8 +53,6 @@ public class StdSelectionTool implements DrawTool {
 	private FigureHandle currentHandle;
 	/** the rubber band during selection. */
 	
-	private SelectionChangedListener selectionChangedListner;
-
 	/** This tool enables selection behavior in the given view.
 	 * 
 	 * @param aView a view this new tool shall operate on.
@@ -264,7 +262,7 @@ public class StdSelectionTool implements DrawTool {
 			selMode = false;
 			view.setSelectionRubberBand(null);
 			view.repaint();
-			selectionChangedListner.update();
+			SelectionChangedListener.update();
 		}
 
 		if (e.isShiftDown() && e.getX() == originalX && e.getY() == originalY)	{

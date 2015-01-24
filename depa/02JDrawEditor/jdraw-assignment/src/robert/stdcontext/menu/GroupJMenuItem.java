@@ -1,29 +1,32 @@
 package robert.stdcontext.menu;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
-
-import javax.swing.JMenuItem;
 
 import jdraw.framework.DrawContext;
 import jdraw.framework.Figure;
 import robert.figuregroup.FigureGroupConcrete;
+import robert.stdcontext.Observer;
+import robert.stdcontext.SelectionChangedListener;
 
-public class GroupJMenuItem extends JMenuItem {
+public class GroupJMenuItem extends DefaultJMenuItem implements Observer {
 
 	public GroupJMenuItem(final DrawContext drawContext) {
-		super("Group");
-		setEnabled(true);
-		addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				List<Figure> selectedFigures = drawContext.getView().getSelection();
-				if(selectedFigures instanceof FigureGroupConcrete == false) {					
-					new FigureGroupConcrete(drawContext.getView().getDrawContext());
-				}				
-			}
-		});
+		super(drawContext,"Group");
+		setEnabled(false);
+		SelectionChangedListener.registerForChanges(this);
+	}
+
+	@Override
+	public void update() {
+		setEnabled(drawContext.getView().getSelection().size()>1);
+	}
+
+	@Override
+	void callOnActionPerformed() {
+		List<Figure> selectedFigures = drawContext.getView().getSelection();
+		if(selectedFigures instanceof FigureGroupConcrete == false) {					
+			new FigureGroupConcrete(drawContext.getView().getDrawContext());
+		}		
+		
 	}
 }

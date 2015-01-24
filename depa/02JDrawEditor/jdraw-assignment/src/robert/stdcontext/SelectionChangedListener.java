@@ -2,9 +2,6 @@ package robert.stdcontext;
 
 import java.util.LinkedList;
 
-import javax.swing.JMenuItem;
-import javax.swing.KeyStroke;
-
 import jdraw.framework.DrawContext;
 
 public class SelectionChangedListener {
@@ -15,8 +12,6 @@ public class SelectionChangedListener {
 	
 	public static void update(){
 		for(Observer o : observers) o.update();
-		
-		System.out.println("Selected Figures: " +drawContext.getView().getSelection().size());
 	}
 	
 	public static void registerForChanges(Observer menuItem){

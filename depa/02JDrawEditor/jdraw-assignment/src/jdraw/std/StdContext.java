@@ -4,27 +4,16 @@
  */
 package jdraw.std;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.util.LinkedList;
 import java.util.List;
 
-import javax.swing.JFileChooser;
 import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.KeyStroke;
-import javax.swing.filechooser.FileFilter;
 
 import jdraw.figures.GenericAbstractTool;
 import jdraw.figures.Oval;
 import jdraw.figures.Rect;
 import jdraw.framework.DrawContext;
-import jdraw.framework.DrawModel;
 import jdraw.framework.DrawToolFactory;
 import jdraw.framework.DrawView;
-import jdraw.framework.Figure;
-import robert.stdcontext.SelectionChangedListener;
 import robert.stdcontext.menu.BringToFrontJMenuItem;
 import robert.stdcontext.menu.CopyJMenuItem;
 import robert.stdcontext.menu.ExitJMenuItem;
