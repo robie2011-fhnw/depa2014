@@ -19,6 +19,7 @@ import robert.stdcontext.menu.CopyJMenuItem;
 import robert.stdcontext.menu.ExitJMenuItem;
 import robert.stdcontext.menu.FivePixelPointConstrainerJMenuItem;
 import robert.stdcontext.menu.GroupJMenuItem;
+import robert.stdcontext.menu.LogDecoratorJMenuItem;
 import robert.stdcontext.menu.OpenJMenuItem;
 import robert.stdcontext.menu.PasteJMenuItem;
 import robert.stdcontext.menu.RedoJMenuItem;
@@ -90,6 +91,10 @@ public class StdContext extends AbstractContext {
 		grid.add("Grid 2");
 		grid.add("Grid 3");
 		editMenu.add(grid);
+		
+		// custom menues
+		editMenu.addSeparator();
+		editMenu.add(new LogDecoratorJMenuItem(drawContext));
 		
 		return editMenu;
 	}

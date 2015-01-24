@@ -16,7 +16,7 @@ public class SelectAllJMenuItem extends JMenuItem {
 	public SelectAllJMenuItem(final DrawContext drawContext){
 		super("Select All");
 		setEnabled(true);
-		setAccelerator(KeyStroke.getKeyStroke("control A"));
+		setAccelerator(KeyStroke.getKeyStroke("control A"));			
 		
 		addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -24,6 +24,7 @@ public class SelectAllJMenuItem extends JMenuItem {
 					drawContext.getView().addToSelection(f);
 				}
 				drawContext.getView().repaint();
+				SelectionChangedListener.update();
 			}
 		});
 	}

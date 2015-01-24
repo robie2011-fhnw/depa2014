@@ -4,24 +4,26 @@ import java.util.List;
 
 import jdraw.framework.DrawContext;
 import jdraw.framework.Figure;
+import jdraw.framework.FigureGroup;
 import robert.figuregroup.FigureGroupConcrete;
 import robert.stdcontext.Observer;
+import robert.stdcontext.SelectionChangedListener;
 
 public class UngroupJMenuItem extends DefaultJMenuItem implements Observer {
 
 	public UngroupJMenuItem(final DrawContext drawContext) {
 		super(drawContext, "Ungroup");
 		setEnabled(false);
+		SelectionChangedListener.registerForChanges(this);
 	}
 
 	@Override
 	public void update() {
 		boolean enabled=false;
 		for(Figure f : drawContext.getView().getSelection())
-			if(f instanceof FigureGroupConcrete)enabled=true;
+			if(f instanceof FigureGroup)enabled=true;
 		
-		setEnabled(enabled);
-		
+		setEnabled(enabled);		
 	}
 
 	@Override

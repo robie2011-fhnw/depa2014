@@ -148,6 +148,7 @@ public class StdSelectionTool implements DrawTool {
 			}
 		}
 		view.repaint();
+		SelectionChangedListener.update();
 	}
 
 	/**	
