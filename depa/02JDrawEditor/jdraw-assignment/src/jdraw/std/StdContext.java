@@ -26,6 +26,7 @@ import robert.stdcontext.menu.*;
  */
 public class StdContext extends AbstractContext {
 	final DrawContext drawContext;
+	List<DrawToolFactory> toolFactories;
 	
 	/**
 	 * Constructs a standard context with a default set of drawing tools.
@@ -44,6 +45,7 @@ public class StdContext extends AbstractContext {
 	public StdContext(DrawView view, List<DrawToolFactory> toolFactories) {
 		super(view, toolFactories);
 		drawContext = getView().getDrawContext();
+		this.toolFactories = toolFactories;
 	}
 
 	/**
@@ -102,9 +104,9 @@ public class StdContext extends AbstractContext {
 
 	@Override
 	protected void doRegisterDrawTools() {
-		// Add new figure tools here
-		addTool(new GenericAbstractTool<Rect>(this, Rect.class));
-		addTool(new GenericAbstractTool<Oval>(this, Oval.class));
+		for(DrawToolFactory toolFactory : toolFactories){
+			addTool(toolFactory.createTool(drawContext));
+		}
 	}
 
 

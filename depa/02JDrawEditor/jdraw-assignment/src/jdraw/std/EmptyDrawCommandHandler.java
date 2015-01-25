@@ -5,8 +5,6 @@
 
 package jdraw.std;
 
-import java.util.Stack;
-
 import jdraw.framework.DrawCommand;
 import jdraw.framework.DrawCommandHandler;
 
