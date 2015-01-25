@@ -20,6 +20,8 @@ import org.apache.log4j.ConsoleAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
+import robert.handlers.StandardDrawCommandHandler;
+
 /**
  * Provide a standard behavior for the drawing model. This class initially does not implement the methods
  * in a proper way.
@@ -35,7 +37,7 @@ public class StdDrawModel implements DrawModel {
 
 	public StdDrawModel(){
 		logger.addAppender(new ConsoleAppender());
-		logger.setLevel(Level.ALL);
+		logger.setLevel(Level.DEBUG);
 		
 		figureChangeListener = new FigureListener() {
 			
@@ -90,7 +92,7 @@ public class StdDrawModel implements DrawModel {
 
 	/** The draw command handler. Initialized here with a dummy implementation. */
 	// TODO initialize with your implementation of the undo/redo-assignment.
-	private DrawCommandHandler handler = new EmptyDrawCommandHandler();
+	private DrawCommandHandler handler = new StandardDrawCommandHandler();
 
 	/**
 	 * Retrieve the draw command handler in use.

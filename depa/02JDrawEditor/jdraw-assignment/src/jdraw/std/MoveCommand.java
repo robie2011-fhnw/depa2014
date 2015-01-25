@@ -5,15 +5,15 @@
 
 package jdraw.std;
 
-import jdraw.framework.DrawCommand;
 import jdraw.framework.Figure;
+import robert.commands.IScriptableCommand;
 
 /**
  * Provides a command for move operations of figures.
  * @author Christoph Denzler
  *
  */
-public class MoveCommand implements DrawCommand {
+public class MoveCommand implements IScriptableCommand {
 	/** The figure being moved. */
 	private Figure f;
 	
@@ -47,6 +47,15 @@ public class MoveCommand implements DrawCommand {
 	 */
 	public void undo() {
 		f.move(-xMovement, -yMovement);
+	}
+
+	@Override
+	public IScriptableCommand tryToAdd(IScriptableCommand cmd) {
+		if(cmd instanceof MoveCommand == false) return null;
+		
+		MoveCommand moveCmd = (MoveCommand) cmd;
+		MoveCommand newCmd = new MoveCommand(f, xMovement+moveCmd.xMovement, yMovement+moveCmd.yMovement);
+		return newCmd;
 	}
 
 }

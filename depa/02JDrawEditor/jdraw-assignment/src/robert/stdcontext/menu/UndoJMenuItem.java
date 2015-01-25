@@ -1,22 +1,27 @@
 package robert.stdcontext.menu;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
+import robert.stdcontext.CommandListener;
+import robert.stdcontext.Observer;
 import jdraw.framework.DrawContext;
 
-public class UndoJMenuItem extends JMenuItem {
+public class UndoJMenuItem extends DefaultJMenuItem implements Observer {
 	public UndoJMenuItem(final DrawContext drawContext){
-		super("Undo");
-		setAccelerator(KeyStroke.getKeyStroke("control Z"));
-		
-		addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				drawContext.getModel().getDrawCommandHandler().undo();
-			}
-		});
+		super(drawContext, "Undo", KeyStroke.getKeyStroke("control Z"));
+		setEnabled(false);
+		CommandListener.addObserver(this);
+	}
+
+	@Override
+	void callOnActionPerformed() {
+		drawContext.getModel().getDrawCommandHandler().undo();		
+	}
+
+	@Override
+	public void update() {
+		setEnabled( drawContext.getModel()
+								.getDrawCommandHandler()
+								.undoPossible());
 	}
 }

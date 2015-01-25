@@ -5,6 +5,8 @@
 
 package jdraw.std;
 
+import java.util.Stack;
+
 import jdraw.framework.DrawCommand;
 import jdraw.framework.DrawCommandHandler;
 
@@ -16,7 +18,7 @@ import jdraw.framework.DrawCommandHandler;
  *
  */
 public class EmptyDrawCommandHandler implements DrawCommandHandler {
-
+	
 	@Override
 	public void addCommand(DrawCommand cmd) { /* do nothing. */ }
 	

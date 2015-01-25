@@ -14,20 +14,8 @@ import jdraw.figures.Rect;
 import jdraw.framework.DrawContext;
 import jdraw.framework.DrawToolFactory;
 import jdraw.framework.DrawView;
-import robert.stdcontext.menu.BringToFrontJMenuItem;
-import robert.stdcontext.menu.CopyJMenuItem;
-import robert.stdcontext.menu.ExitJMenuItem;
-import robert.stdcontext.menu.FivePixelPointConstrainerJMenuItem;
-import robert.stdcontext.menu.GroupJMenuItem;
-import robert.stdcontext.menu.LogDecoratorJMenuItem;
-import robert.stdcontext.menu.OpenJMenuItem;
-import robert.stdcontext.menu.PasteJMenuItem;
-import robert.stdcontext.menu.RedoJMenuItem;
-import robert.stdcontext.menu.SaveJMenuItem;
-import robert.stdcontext.menu.SelectAllJMenuItem;
-import robert.stdcontext.menu.SendToBackJMenuItem;
-import robert.stdcontext.menu.UndoJMenuItem;
-import robert.stdcontext.menu.UngroupJMenuItem;
+import robert.stdcontext.menu.*;
+
 
 /**
  * Standard implementation of interface DrawContext.
@@ -58,7 +46,6 @@ public class StdContext extends AbstractContext {
 		drawContext = getView().getDrawContext();
 	}
 
-	// TODO: Refactoring, move to separate class
 	/**
 	 * Creates and initializes the "Edit" menu.
 	 * 
